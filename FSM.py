@@ -31,7 +31,7 @@ class FSM:
     def mixer2_state(self):
         print("State: mixer 2")
         time.sleep(10)
-        self.state = 'pumpout'
+        self.state = 'mixer3'
 
     def mixer3_state(self):
         print("State: mixer 3")
