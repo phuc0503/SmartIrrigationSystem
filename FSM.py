@@ -1,4 +1,7 @@
 import time
+import Utilities.modbus485
+import serial as serial
+import config.m485_parameters as m485_params
 
 class FSM:
     def __init__(self):
@@ -25,7 +28,17 @@ class FSM:
     
     def mixer1_state(self):
         print("State: mixer 1")
+        m485.modbus485_send(m485_params.relay1_ON)
+        if m485.modbus485_read_adc() == 255:
+            print("Mixer 1 is on")
+        else:
+            print("Cannot turn on mixer 1")
         time.sleep(10)
+        m485.modbus485_send(m485_params.relay1_OFF)
+        if m485.modbus485_read_adc() == 0:
+            print("Mixer 1 is off")
+        else:
+            print("Cannot turn off mixer 1")
         self.state = 'mixer2'
     
     def mixer2_state(self):
@@ -47,6 +60,13 @@ class FSM:
         print("State: pump out")
         time.sleep(20)
         self.state = 'end'
+
+try:
+    ser = serial.Serial(port='/dev/ttyUSB0', baudrate=9600)
+except:
+    print("Cannot open port")
+
+m485 = Utilities.modbus485.Modbus485(ser)
 
 if __name__ == "__main__":
     fsm = FSM()
