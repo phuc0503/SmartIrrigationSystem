@@ -53,7 +53,7 @@ task1 = PrivateTasks.private_task_1.Task1()
 task2 = PrivateTasks.private_task_2.Task2()
 # queue.SCH_Add_Task(task1.Task1_Run, 100,200)
 # queue.SCH_Add_Task(task2.Task2_Run, 100,400)
-fsm = FSM.FSM()
+fsm = FSM.FSM(3)
 queue.SCH_Add_Task(fsm.run, 0, 7000)
 cnt = 0
 print(queue)
@@ -63,6 +63,6 @@ while True:
     queue.SCH_Update()
     queue.SCH_Dispatch_Tasks()
     time.sleep(1)
-    cnt += 1
-    if cnt == 10:
-        queue.SCH_Delete(task1)
+    # cnt += 1
+    # if cnt == 10:
+    #     queue.SCH_Delete(task1)
