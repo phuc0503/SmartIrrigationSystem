@@ -7,7 +7,7 @@ from datetime import datetime
 current_time = datetime.now().time()
 
 class FSM:
-    def __init__(self, cycle=0):
+    def __init__(self, cycle=1):
         self.state = 'idle'
         self.cycle = cycle
     
@@ -31,7 +31,8 @@ class FSM:
         self.state = 'mixer1'
     
     def mixer1_state(self):
-        print("Time: ", current_time)
+        print("Cycle:", self.cycle)
+        print("Time: ", datetime.now().time())
         print("State: mixer 1")
         m485.modbus485_send(m485_params.relay1_ON)
         time.sleep(0.5)
@@ -49,7 +50,7 @@ class FSM:
         self.state = 'mixer2'
     
     def mixer2_state(self):
-        print("Time: ", current_time)
+        print("Time: ", datetime.now().time())
         print("State: mixer 2")
         m485.modbus485_send(m485_params.relay2_ON)
         time.sleep(0.5)
@@ -67,7 +68,7 @@ class FSM:
         self.state = 'mixer3'
 
     def mixer3_state(self):
-        print("Time: ", current_time)
+        print("Time: ", datetime.now().time())
         print("State: mixer 3")
         m485.modbus485_send(m485_params.relay3_ON)
         time.sleep(0.5)
@@ -85,16 +86,16 @@ class FSM:
         self.state = 'pumpin'
     
     def pumpin_state(self):
-        print("Time: ", current_time)
+        print("Time: ", datetime.now().time())
         print("State: pump in")
         time.sleep(20)
         self.state = 'pumpout'
     
     def pumpout_state(self):
-        print("Time: ", current_time)
+        print("Time: ", datetime.now().time())
         print("State: pump out")
         time.sleep(20)
-        if self.cycle > 0:
+        if self.cycle > 1:
             self.cycle -= 1
             self.state = 'mixer1'
         else:
