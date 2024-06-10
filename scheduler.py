@@ -54,7 +54,7 @@ task2 = PrivateTasks.private_task_2.Task2()
 # queue.SCH_Add_Task(task1.Task1_Run, 100,200)
 # queue.SCH_Add_Task(task2.Task2_Run, 100,400)
 fsm = FSM.FSM()
-queue.SCH_Add_Task(fsm.run(), 0, 7000)
+queue.SCH_Add_Task(fsm.run, 0, 7000)
 cnt = 0
 print(queue)
 while True:
