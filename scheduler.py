@@ -60,7 +60,7 @@ while True:
     print("#", cnt)
     queue.SCH_Update()
     queue.SCH_Dispatch_Tasks()
-    time.sleep(0.1)
+    time.sleep(1)
     cnt += 1
     if cnt == 10:
         queue.SCH_Delete(task1)
