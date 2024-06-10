@@ -36,6 +36,7 @@ class FSM:
             print("Cannot turn on mixer 1")
         time.sleep(10)
         m485.modbus485_send(m485_params.relay1_OFF)
+        time.sleep(0.5)
         if m485.modbus485_read_adc() == 0:
             print("Mixer 1 is off")
         else:
@@ -52,6 +53,7 @@ class FSM:
             print("Cannot turn on mixer 2")
         time.sleep(10)
         m485.modbus485_send(m485_params.relay2_OFF)
+        time.sleep(0.5)
         if m485.modbus485_read_adc() == 0:
             print("Mixer 2 is off")
         else:
@@ -68,6 +70,7 @@ class FSM:
             print("Cannot turn on mixer 3")
         time.sleep(10)
         m485.modbus485_send(m485_params.relay3_OFF)
+        time.sleep(0.5)
         if m485.modbus485_read_adc() == 0:
             print("Mixer 3 is off")
         else:
