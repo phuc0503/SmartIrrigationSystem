@@ -94,7 +94,7 @@ except:
 
 m485 = Utilities.modbus485.Modbus485(ser)
 
-if __name__ == "__main__":
-    fsm = FSM()
-    fsm.run()
-    print("FSM has reached the end state.")
+# if __name__ == "__main__":
+#     fsm = FSM()
+#     fsm.run()
+#     print("FSM has reached the end state.")
