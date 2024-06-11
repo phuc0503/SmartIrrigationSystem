@@ -42,7 +42,7 @@ class FSM:
             print("Cannot turn on mixer 1")
         time.sleep(10)
         m485.modbus485_send(m485_params.relay1_OFF)
-        client.publish("mixer1", 0)
+        client.publish("btl-iot.mixer1", 0)
         time.sleep(0.5)
         if m485.modbus485_read_adc() == 0:
             print("Mixer 1 is off")
@@ -54,7 +54,7 @@ class FSM:
         print("Time: ", datetime.now().time())
         print("State: mixer 2")
         m485.modbus485_send(m485_params.relay2_ON)
-        client.publish("mixer2", 1)
+        client.publish("btl-iot.mixer2", 1)
         time.sleep(0.5)
         if m485.modbus485_read_adc() == 255:
             print("Mixer 2 is on")
@@ -62,7 +62,7 @@ class FSM:
             print("Cannot turn on mixer 2")
         time.sleep(10)
         m485.modbus485_send(m485_params.relay2_OFF)
-        client.publish("mixer2", 0)
+        client.publish("btl-iot.mixer2", 0)
         time.sleep(0.5)
         if m485.modbus485_read_adc() == 0:
             print("Mixer 2 is off")
@@ -74,7 +74,7 @@ class FSM:
         print("Time: ", datetime.now().time())
         print("State: mixer 3")
         m485.modbus485_send(m485_params.relay3_ON)
-        client.publish("mixer3", 1)
+        client.publish("btl-iot.mixer3", 1)
         time.sleep(0.5)
         if m485.modbus485_read_adc() == 255:
             print("Mixer 3 is on")
@@ -82,7 +82,7 @@ class FSM:
             print("Cannot turn on mixer 3")
         time.sleep(10)
         m485.modbus485_send(m485_params.relay3_OFF)
-        client.publish("mixer3", 0)
+        client.publish("btl-iot.mixer3", 0)
         time.sleep(0.5)
         if m485.modbus485_read_adc() == 0:
             print("Mixer 3 is off")
@@ -94,14 +94,14 @@ class FSM:
         print("Time: ", datetime.now().time())
         print("State: pump in")
         time.sleep(15)
-        client.publish("pumpin", 0)
+        client.publish("btl-iot.pumpin", 0)
         self.state = 'pumpout'
     
     def pumpout_state(self, client):
         print("Time: ", datetime.now().time())
         print("State: pump out")
         time.sleep(15)
-        client.publish("pumpout", 0)
+        client.publish("btl-iot.pumpout", 0)
         if self.cycle > 1:
             self.cycle -= 1
             self.state = 'mixer1'
