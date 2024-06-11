@@ -1,5 +1,5 @@
 import time
-import Utilities.modbus485
+from Utilities.modbus485 import *
 import serial as serial
 import config.m485_parameters as m485_params
 from datetime import datetime

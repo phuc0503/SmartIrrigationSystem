@@ -1,6 +1,18 @@
 import struct
 import serial
 
+def processData(client, feed, data):
+    if data == 255:
+        data = 1
+    else:
+        data = 0
+    if feed == 1:
+        client.publish("iot-btl.mixer1", data)
+    elif feed == 2:
+        client.publish("iot-btl.mixer2", data)
+    elif feed == 3:
+        client.publish("iot-btl.mixer3", data)
+
 class Modbus485:
     def __init__(self, _rs485):
         self.rs485 = _rs485
@@ -32,7 +44,7 @@ class Modbus485:
             out = ser.read(bytesToRead)
             # print("Clear buffer: ", out)
 
-    def modbus485_read_adc(self):
+    def modbus485_read_adc(self, client):
         ser = self.rs485
         bytesToRead = ser.inWaiting()
         if bytesToRead > 0:
@@ -42,6 +54,7 @@ class Modbus485:
             if len(data_array) >= 7:
                 array_size = len(data_array)
                 value = data_array[array_size - 4]*256 + data_array[array_size - 3]
+                processData(client, data_array[0], value)
                 return value
             else:
                 return -1
@@ -69,3 +82,10 @@ class Modbus485:
             else:
                 return -1
         return 0
+    
+try:
+    ser = serial.Serial(port='/dev/ttyUSB0', baudrate=9600)
+except:
+    print("Cannot open port")
+
+m485 = Utilities.modbus485.Modbus485(ser)
