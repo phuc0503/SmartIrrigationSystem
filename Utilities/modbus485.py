@@ -88,4 +88,4 @@ try:
 except:
     print("Cannot open port")
 
-m485 = Utilities.modbus485.Modbus485(ser)
+m485 = Modbus485(ser)
