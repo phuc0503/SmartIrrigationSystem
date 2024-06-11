@@ -36,7 +36,10 @@ class MyMQTTClient:
     def message(self, client, feed_id, payload):
         print("Nhan du lieu: " + payload, "feed id: " + feed_id)
         if feed_id == "iot-btl.mixer1" and payload == "1":
-            fsm.run(self.client)
+            # fsm.run(self.client)
+            fsm.mixer1_state(self.client)
+            fsm.mixer2_state()
+            fsm.mixer3_state(self.client)
             # print("Time: ", datetime.now().time())
             # print("State: mixer 1")
             # m485.modbus485_send(m485_params.relay1_ON)
