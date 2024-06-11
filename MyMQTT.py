@@ -9,7 +9,7 @@ class MyMQTTClient:
 
         self.client.on_connect = self.connected
         self.client.on_disconnect = self.disconnected
-        self.client.on_message = self.message(self.client)
+        self.client.on_message = self.message
         self.client.on_subscribe = self.subscribe
         
     def connect(self):
@@ -30,6 +30,5 @@ class MyMQTTClient:
 
     def message(self, client, feed_id, payload):
         print("Nhan du lieu: " + payload, "feed id: " + feed_id)
-        if feed_id == "mixer1":
+        if feed_id == "iot-btl.mixer1":
             fsm.run(client)
-            print("Mixer 1")
