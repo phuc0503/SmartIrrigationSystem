@@ -41,8 +41,8 @@ class FSM:
         else:
             print("Cannot turn on mixer 1")
         time.sleep(10)
-        m485.modbus485_send(m485_params.relay1_OFF)
         client.publish("iot-btl.mixer1", 0)
+        m485.modbus485_send(m485_params.relay1_OFF)
         time.sleep(0.5)
         if m485.modbus485_read_adc() == 0:
             print("Mixer 1 is off")
@@ -53,16 +53,16 @@ class FSM:
     def mixer2_state(self, client):
         print("Time: ", datetime.now().time())
         print("State: mixer 2")
-        m485.modbus485_send(m485_params.relay2_ON)
         client.publish("iot-btl.mixer2", 1)
+        m485.modbus485_send(m485_params.relay2_ON)
         time.sleep(0.5)
         if m485.modbus485_read_adc() == 255:
             print("Mixer 2 is on")
         else:
             print("Cannot turn on mixer 2")
         time.sleep(10)
-        m485.modbus485_send(m485_params.relay2_OFF)
         client.publish("iot-btl.mixer2", 0)
+        m485.modbus485_send(m485_params.relay2_OFF)
         time.sleep(0.5)
         if m485.modbus485_read_adc() == 0:
             print("Mixer 2 is off")
@@ -73,16 +73,16 @@ class FSM:
     def mixer3_state(self, client):
         print("Time: ", datetime.now().time())
         print("State: mixer 3")
-        m485.modbus485_send(m485_params.relay3_ON)
         client.publish("iot-btl.mixer3", 1)
+        m485.modbus485_send(m485_params.relay3_ON)
         time.sleep(0.5)
         if m485.modbus485_read_adc() == 255:
             print("Mixer 3 is on")
         else:
             print("Cannot turn on mixer 3")
         time.sleep(10)
-        m485.modbus485_send(m485_params.relay3_OFF)
         client.publish("iot-btl.mixer3", 0)
+        m485.modbus485_send(m485_params.relay3_OFF)
         time.sleep(0.5)
         if m485.modbus485_read_adc() == 0:
             print("Mixer 3 is off")
