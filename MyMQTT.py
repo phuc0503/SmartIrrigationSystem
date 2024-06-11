@@ -60,3 +60,39 @@ class MyMQTTClient:
                 print("Mixer 1 is off")
             else:
                 print("Cannot turn off mixer 1")
+
+            print("Time: ", datetime.now().time())
+            print("State: mixer 2")
+            client.publish("iot-btl.mixer2", 1)
+            m485.modbus485_send(m485_params.relay2_ON)
+            time.sleep(0.5)
+            if m485.modbus485_read_adc() == 255:
+                print("Mixer 2 is on")
+            else:
+                print("Cannot turn on mixer 2")
+            time.sleep(10)
+            client.publish("iot-btl.mixer2", 0)
+            m485.modbus485_send(m485_params.relay2_OFF)
+            time.sleep(0.5)
+            if m485.modbus485_read_adc() == 0:
+                print("Mixer 2 is off")
+            else:
+                print("Cannot turn off mixer 2")
+
+            print("Time: ", datetime.now().time())
+            print("State: mixer 3")
+            client.publish("iot-btl.mixer3", 1)
+            m485.modbus485_send(m485_params.relay3_ON)
+            time.sleep(0.5)
+            if m485.modbus485_read_adc() == 255:
+                print("Mixer 3 is on")
+            else:
+                print("Cannot turn on mixer 3")
+            time.sleep(10)
+            client.publish("iot-btl.mixer3", 0)
+            m485.modbus485_send(m485_params.relay3_OFF)
+            time.sleep(0.5)
+            if m485.modbus485_read_adc() == 0:
+                print("Mixer 3 is off")
+            else:
+                print("Cannot turn off mixer 3")
