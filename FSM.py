@@ -4,8 +4,6 @@ import serial as serial
 import config.m485_parameters as m485_params
 from datetime import datetime
 
-current_time = datetime.now().time()
-
 class FSM:
     def __init__(self, cycle=1):
         self.state = 'idle'
