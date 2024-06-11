@@ -106,12 +106,12 @@ class FSM:
         else:
             self.state = 'end'
 
-try:
-    ser = serial.Serial(port='/dev/ttyUSB0', baudrate=9600)
-except:
-    print("Cannot open port")
+# try:
+#     ser = serial.Serial(port='/dev/ttyUSB0', baudrate=9600)
+# except:
+#     print("Cannot open port")
 
-m485 = Utilities.modbus485.Modbus485(ser)
+# m485 = Utilities.modbus485.Modbus485(ser)
 fsm = FSM()
 
 # if __name__ == "__main__":
