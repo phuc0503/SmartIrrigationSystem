@@ -9,7 +9,7 @@ class MyMQTTClient:
 
         self.client.on_connect = self.connected
         self.client.on_disconnect = self.disconnected
-        self.client.on_message = self.message
+        self.client.on_message = self.message(self.client)
         self.client.on_subscribe = self.subscribe
         
     def connect(self):
