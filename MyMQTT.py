@@ -1,5 +1,6 @@
 import sys
 from Adafruit_IO import MQTTClient
+from FSM import fsm
 
 class MyMQTTClient:
     def __init__(self, aio_username, aio_key, aio_feed_ids):
@@ -29,3 +30,5 @@ class MyMQTTClient:
 
     def message(self, client, feed_id, payload):
         print("Nhan du lieu: " + payload, "feed id: " + feed_id)
+        if feed_id == "mixer1":
+            fsm.run(client)
