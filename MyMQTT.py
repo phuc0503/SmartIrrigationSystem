@@ -31,4 +31,4 @@ class MyMQTTClient:
     def message(self, client, feed_id, payload):
         print("Nhan du lieu: " + payload, "feed id: " + feed_id)
         if feed_id == "iot-btl.mixer1":
-            fsm.run(client)
+            fsm.run(self.client)
