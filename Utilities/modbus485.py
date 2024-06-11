@@ -44,7 +44,7 @@ class Modbus485:
             out = ser.read(bytesToRead)
             # print("Clear buffer: ", out)
 
-    def modbus485_read_adc(self, client):
+    def modbus485_read_adc(self):
         ser = self.rs485
         bytesToRead = ser.inWaiting()
         if bytesToRead > 0:
@@ -54,7 +54,7 @@ class Modbus485:
             if len(data_array) >= 7:
                 array_size = len(data_array)
                 value = data_array[array_size - 4]*256 + data_array[array_size - 3]
-                processData(client, data_array[0], value)
+                # processData(client, data_array[0], value)
                 return value
             else:
                 return -1

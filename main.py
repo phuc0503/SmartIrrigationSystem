@@ -6,5 +6,5 @@ mqtt_client = MyMQTTClient(aio.AIO_USERNAME, aio.AIO_KEY, aio.AIO_FEED_IDS)
 mqtt_client.connect()
 
 while True:
-    m485.modbus485_read_adc(mqtt_client.client)
+    # m485.modbus485_read_adc(mqtt_client.client)
     pass
