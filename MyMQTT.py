@@ -63,6 +63,7 @@ class MyMQTTClient:
         if feed_id == "iot-btl.pumpout" and payload == "1":
             fsm.pumpout_state()
             self.client.publish("iot-btl.pumpout", 0)
+            print("area: ", area)
             if area == 1:
                 self.client.publish("iot-btl.area1", 0)
             elif area == 2:
