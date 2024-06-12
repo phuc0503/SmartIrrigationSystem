@@ -8,6 +8,7 @@ class FSM:
     def __init__(self, cycle=1):
         self.state = 'idle'
         self.cycle = cycle
+        self.area = 0
     
     def run(self, client):
         while self.state != 'end':
@@ -82,6 +83,26 @@ class FSM:
         else:
             print("Cannot turn off mixer 3")
         self.state = 'pumpin'
+
+    def select_area(self, area):
+        if area == 1:
+            self.area = 1
+            m485.modbus485_send(m485_params.relay4_ON)
+            m485.modbus485_send(m485_params.relay5_OFF)
+            m485.modbus485_send(m485_params.relay6_OFF)
+            print("Area 1 is selected")
+        elif area == 2:
+            self.area = 2
+            m485.modbus485_send(m485_params.relay4_OFF)
+            m485.modbus485_send(m485_params.relay5_ON)
+            m485.modbus485_send(m485_params.relay6_OFF)
+            print("Area 2 is selected")
+        elif area == 3:
+            self.area = 3
+            m485.modbus485_send(m485_params.relay4_OFF)
+            m485.modbus485_send(m485_params.relay5_OFF)
+            m485.modbus485_send(m485_params.relay6_ON)
+            print("Area 3 is selected")
     
     def pumpin_state(self):
         print("Time: ", datetime.now().time())
@@ -119,6 +140,12 @@ class FSM:
             print("Pump out is off")
         else:
             print("Cannot turn off pump out")
+        if self.area == 1:
+            m485.modbus485_send(m485_params.relay4_OFF)
+        elif self.area == 2:
+            m485.modbus485_send(m485_params.relay5_OFF)
+        elif self.area == 3:
+            m485.modbus485_send(m485_params.relay6_OFF)
         if self.cycle > 1:
             self.cycle -= 1
             self.state = 'mixer1'
