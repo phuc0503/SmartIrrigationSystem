@@ -35,7 +35,7 @@ class MyMQTTClient:
 
     def message(self, client, feed_id, payload):
         # print("Nhan du lieu: " + payload, "feed id: " + feed_id)
-        area = 0
+        area = [0, 0, 0]
         if feed_id == "iot-btl.mixer1" and payload == "1":
             # fsm.run(self.client)
             fsm.mixer1_state()
@@ -50,13 +50,13 @@ class MyMQTTClient:
             self.client.publish("iot-btl.mixer3", 0)
         if feed_id == "iot-btl.area1" and payload == "1":
             fsm.select_area(1)
-            area += 1
+            area[0] = 1
         elif feed_id == "iot-btl.area2" and payload == "1":
             fsm.select_area(2)
-            area += 2
+            area[1] = 1
         elif feed_id == "iot-btl.area3" and payload == "1":
             fsm.select_area(3)
-            area += 3
+            area[2] = 1
         if feed_id  == "iot-btl.pumpin" and payload == "1":
             fsm.pumpin_state()
             self.client.publish("iot-btl.pumpin", 0)
@@ -64,9 +64,9 @@ class MyMQTTClient:
             fsm.pumpout_state()
             self.client.publish("iot-btl.pumpout", 0)
             print("area: ", area)
-            if area == 1:
+            if area[0] == 1:
                 self.client.publish("iot-btl.area1", 0)
-            elif area == 2:
+            elif area[1] == 1:
                 self.client.publish("iot-btl.area2", 0)
-            elif area == 3:
+            elif area[2] == 1:
                 self.client.publish("iot-btl.area3", 0)
