@@ -50,13 +50,13 @@ class MyMQTTClient:
             self.client.publish("iot-btl.mixer3", 0)
         if feed_id == "iot-btl.area1" and payload == "1":
             fsm.select_area(1)
-            area = 1
+            area += 1
         elif feed_id == "iot-btl.area2" and payload == "1":
             fsm.select_area(2)
-            area = 2
+            area += 2
         elif feed_id == "iot-btl.area3" and payload == "1":
             fsm.select_area(3)
-            area = 3
+            area += 3
         if feed_id  == "iot-btl.pumpin" and payload == "1":
             fsm.pumpin_state()
             self.client.publish("iot-btl.pumpin", 0)
