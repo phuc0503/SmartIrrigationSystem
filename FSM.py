@@ -38,6 +38,7 @@ class FSM:
             print("Mixer 1 is on")
         else:
             print("Cannot turn on mixer 1")
+        time.sleep(10)
         m485.modbus485_send(m485_params.relay1_OFF)
         time.sleep(0.5)
         if m485.modbus485_read_adc() == 0:
