@@ -83,18 +83,40 @@ class FSM:
             print("Cannot turn off mixer 3")
         self.state = 'pumpin'
     
-    def pumpin_state(self, client):
+    def pumpin_state(self):
         print("Time: ", datetime.now().time())
         print("State: pump in")
+        m485.modbus485_send(m485_params.relay7_ON)
+        time.sleep(0.5)
+        if m485.modbus485_read_adc() == 255:
+            print("Pump in is on")
+        else:
+            print("Cannot turn on pump in")
         time.sleep(15)
-        client.publish("iot-btl.pumpin", 0)
+        m485.modbus485_send(m485_params.relay7_OFF)
+        time.sleep(0.5)
+        if m485.modbus485_read_adc() == 0:
+            print("Pump in is off")
+        else:
+            print("Cannot turn off pump in")
         self.state = 'pumpout'
     
-    def pumpout_state(self, client):
+    def pumpout_state(self):
         print("Time: ", datetime.now().time())
         print("State: pump out")
+        m485.modbus485_send(m485_params.relay8_ON)
+        time.sleep(0.5)
+        if m485.modbus485_read_adc() == 255:
+            print("Pump out is on")
+        else:
+            print("Cannot turn on pump out")
         time.sleep(15)
-        client.publish("iot-btl.pumpout", 0)
+        m485.modbus485_send(m485_params.relay8_OFF)
+        time.sleep(0.5)
+        if m485.modbus485_read_adc() == 0:
+            print("Pump out is off")
+        else:
+            print("Cannot turn off pump out")
         if self.cycle > 1:
             self.cycle -= 1
             self.state = 'mixer1'

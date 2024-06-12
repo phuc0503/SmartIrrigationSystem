@@ -47,59 +47,9 @@ class MyMQTTClient:
         if feed_id == "iot-btl.mixer3" and payload == "1":
             fsm.mixer3_state()
             self.client.publish("iot-btl.mixer3", 0)
-            # self.client.publish("iot-btl.mixer2", 0)
-            # self.client.publish("iot-btl.mixer3", 1)
-            # fsm.mixer3_state()
-            # self.client.publish("iot-btl.mixer3", 0)
-            # print("Time: ", datetime.now().time())
-            # print("State: mixer 1")
-            # m485.modbus485_send(m485_params.relay1_ON)
-            # time.sleep(0.5)
-            # if m485.modbus485_read_adc(self.client) == 255:
-            #     print("Mixer 1 is on")
-            # else:
-            #     print("Cannot turn on mixer 1")
-            # time.sleep(10)
-            # # self.client.publish("iot-btl.mixer1", 0)
-            # m485.modbus485_send(m485_params.relay1_OFF)
-            # time.sleep(0.5)
-            # if m485.modbus485_read_adc(self.client) == 0:
-            #     print("Mixer 1 is off")
-            # else:
-            #     print("Cannot turn off mixer 1")
-
-            # print("Time: ", datetime.now().time())
-            # print("State: mixer 2")
-            # # self.client.publish("iot-btl.mixer2", 1)
-            # m485.modbus485_send(m485_params.relay2_ON)
-            # time.sleep(0.5)
-            # if m485.modbus485_read_adc(self.client) == 255:
-            #     print("Mixer 2 is on")
-            # else:
-            #     print("Cannot turn on mixer 2")
-            # time.sleep(10)
-            # # self.client.publish("iot-btl.mixer2", 0)
-            # m485.modbus485_send(m485_params.relay2_OFF)
-            # time.sleep(0.5)
-            # if m485.modbus485_read_adc(self.client) == 0:
-            #     print("Mixer 2 is off")
-            # else:
-            #     print("Cannot turn off mixer 2")
-
-            # print("Time: ", datetime.now().time())
-            # print("State: mixer 3")
-            # # self.client.publish("iot-btl.mixer3", 1)
-            # m485.modbus485_send(m485_params.relay3_ON)
-            # time.sleep(0.5)
-            # if m485.modbus485_read_adc(self.client) == 255:
-            #     print("Mixer 3 is on")
-            # else:
-            #     print("Cannot turn on mixer 3")
-            # time.sleep(10)
-            # # self.client.publish("iot-btl.mixer3", 0)
-            # m485.modbus485_send(m485_params.relay3_OFF)
-            # time.sleep(0.5)
-            # if m485.modbus485_read_adc(self.client) == 0:
-            #     print("Mixer 3 is off")
-            # else:
-            #     print("Cannot turn off mixer 3")
+        if feed_id  == "iot-btl.pumpin" and payload == "1":
+            fsm.pumpin_state()
+            self.client.publish("iot-btl.pumpin", 0)
+        if feed_id == "iot-btl.pumpout" and payload == "1":
+            fsm.pumpout_state()
+            self.client.publish("iot-btl.pumpout", 0)
