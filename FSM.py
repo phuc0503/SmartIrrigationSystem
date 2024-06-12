@@ -33,14 +33,14 @@ class FSM:
         print("Time: ", datetime.now().time())
         print("State: mixer 1")
         m485.modbus485_send(m485_params.relay1_ON)
-        time.sleep(0.5)
+        time.sleep(0.1)
         if m485.modbus485_read_adc() == 255:
             print("Mixer 1 is on")
         else:
             print("Cannot turn on mixer 1")
         time.sleep(10)
         m485.modbus485_send(m485_params.relay1_OFF)
-        time.sleep(0.5)
+        time.sleep(0.1)
         if m485.modbus485_read_adc() == 0:
             print("Mixer 1 is off")
         else:
@@ -51,14 +51,14 @@ class FSM:
         print("Time: ", datetime.now().time())
         print("State: mixer 2")
         m485.modbus485_send(m485_params.relay2_ON)
-        time.sleep(0.5)
+        time.sleep(0.1)
         if m485.modbus485_read_adc() == 255:
             print("Mixer 2 is on")
         else:
             print("Cannot turn on mixer 2")
         time.sleep(10)
         m485.modbus485_send(m485_params.relay2_OFF)
-        time.sleep(0.5)
+        time.sleep(0.1)
         if m485.modbus485_read_adc() == 0:
             print("Mixer 2 is off")
         else:
@@ -69,14 +69,14 @@ class FSM:
         print("Time: ", datetime.now().time())
         print("State: mixer 3")
         m485.modbus485_send(m485_params.relay3_ON)
-        time.sleep(0.5)
+        time.sleep(0.1)
         if m485.modbus485_read_adc() == 255:
             print("Mixer 3 is on")
         else:
             print("Cannot turn on mixer 3")
         time.sleep(10)
         m485.modbus485_send(m485_params.relay3_OFF)
-        time.sleep(0.5)
+        time.sleep(0.1)
         if m485.modbus485_read_adc() == 0:
             print("Mixer 3 is off")
         else:
@@ -87,14 +87,15 @@ class FSM:
         print("Time: ", datetime.now().time())
         print("State: pump in")
         m485.modbus485_send(m485_params.relay7_ON)
-        time.sleep(0.5)
+        time.sleep(0.1)
         if m485.modbus485_read_adc() == 255:
             print("Pump in is on")
         else:
             print("Cannot turn on pump in")
         time.sleep(15)
         m485.modbus485_send(m485_params.relay7_OFF)
-        time.sleep(0.5)
+        time.sleep(0.1)
+        print("Time: ", datetime.now().time())
         if m485.modbus485_read_adc() == 0:
             print("Pump in is off")
         else:
@@ -105,14 +106,15 @@ class FSM:
         print("Time: ", datetime.now().time())
         print("State: pump out")
         m485.modbus485_send(m485_params.relay8_ON)
-        time.sleep(0.5)
+        time.sleep(0.1)
         if m485.modbus485_read_adc() == 255:
             print("Pump out is on")
         else:
             print("Cannot turn on pump out")
         time.sleep(15)
         m485.modbus485_send(m485_params.relay8_OFF)
-        time.sleep(0.5)
+        time.sleep(0.1)
+        print("Time: ", datetime.now().time())
         if m485.modbus485_read_adc() == 0:
             print("Pump out is off")
         else:
