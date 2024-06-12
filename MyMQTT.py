@@ -40,7 +40,13 @@ class MyMQTTClient:
             fsm.mixer1_state()
             self.client.publish("iot-btl.mixer1", 0)
             self.client.publish("iot-btl.mixer2", 1)
+        if feed_id == "iot-btl.mixer2" and payload == "1":
             fsm.mixer2_state()
+            self.client.publish("iot-btl.mixer2", 0)
+            self.client.publish("iot-btl.mixer3", 1)
+        if feed_id == "iot-btl.mixer3" and payload == "1":
+            fsm.mixer3_state()
+            self.client.publish("iot-btl.mixer3", 0)
             # self.client.publish("iot-btl.mixer2", 0)
             # self.client.publish("iot-btl.mixer3", 1)
             # fsm.mixer3_state()
