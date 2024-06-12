@@ -34,7 +34,7 @@ class MyMQTTClient:
         sys.exit (1)
 
     def message(self, client, feed_id, payload):
-        print("Nhan du lieu: " + payload, "feed id: " + feed_id)
+        # print("Nhan du lieu: " + payload, "feed id: " + feed_id)
         if feed_id == "iot-btl.mixer1" and payload == "1":
             # fsm.run(self.client)
             fsm.mixer1_state()
