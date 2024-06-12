@@ -40,7 +40,7 @@ class MyMQTTClient:
             fsm.mixer1_state()
             self.client.publish("iot-btl.mixer1", 0)
             self.client.publish("iot-btl.mixer2", 1)
-            # fsm.mixer2_state()
+            fsm.mixer2_state()
             # self.client.publish("iot-btl.mixer2", 0)
             # self.client.publish("iot-btl.mixer3", 1)
             # fsm.mixer3_state()
